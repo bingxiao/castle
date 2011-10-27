@@ -1,6 +1,5 @@
 # Natan Yellin's Glorious Dotfiles for Great Success in Home Directory
-## Overview
-Dotfiles for bash, zsh, and git. Part of my emacs dotfiles.
+Dotfiles for bash, zsh, and git. Also includes parts of my Emacs configuration.
 ## Installation
 Install with [Homesick](https://github.com/technicalpickles/homesick).
 ## TODO

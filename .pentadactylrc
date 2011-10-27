@@ -1,0 +1,18 @@
+"1.0b7.2 "(created 2011/08/05 11:03:59)"
+
+loadplugins '\.(js|penta)$'
+group user
+
+" Show the toolbar
+set guioptions+=T
+
+" Keyboard shortcuts
+map -modes=n,v J <count><count><count>gT
+map -modes=n,v K <count><count><count>gt
+map -modes=n,v x <count>D
+
+" Site-specific settings
+" Don't swallow gmail's shortcuts
+set passkeys=mail.google.com:xD	
+
+" vim: set ft=pentadactyl:

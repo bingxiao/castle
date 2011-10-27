@@ -1,0 +1,19 @@
+[user]
+	name = Natan Yellin
+	email = natany@checkpoint.com
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[core]
+	; don't show ^C for CR+LF line endings (e.g. in `git diff`)
+	whitespace = cr-at-eol
+	; checkout newlines as-is, commit Unix-style
+	; (if you are using an inferior text-editor, set to `true` to checkout CR+LF)
+	autocrlf = input
+	editor = vim
+[alias]
+	; aliases wont work if git can't access a directory in your path
+	; log plus
+	logp = log --all --graph --decorate
+[color]
+	ui = true

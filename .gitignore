@@ -1,1 +1,11 @@
+.elc
+.DS_Store
+
 .emacs.desktop
+
+/home/.emacs.d/custom/packages
+/home/.emacs.d/ede-projects.el
+/home/.emacs.d/elpa
+/home/.emacs.d/el-get
+/home/.emacs.d/auto-save-list
+

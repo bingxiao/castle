@@ -42,6 +42,7 @@
 (push "/usr/texbin" exec-path)
 
 ;; TODO: setup smtp for sending through gmail
+;; This is broken
 (setq message-send-mail-function 'smtpmail-send-it
   user-email-address "aantny@gmail.com"
   gnus-email-address "aantny@gmail.com"

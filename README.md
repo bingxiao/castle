@@ -3,13 +3,19 @@ My [castle](https://github.com/technicalpickles/homesick), my
 dotfiles. Sheltering me from guis since 2011.
 
 ## Overview
-I use emacs, zsh, and git. These are my dotfiles. This is how I work.
+I use emacs, zsh, and git on Mac OS X Snow Leopard. These are my
+dotfiles. This is how I work.
 
-Free! Includes out of the box support for abnormal workflows!
-Mouseless browsing! Wonderful shortcuts! Limited time offer! Free!
+### Guiding principles
+* Minimize keystrokes.
+* When typing, fingers belong on the home row.
+* Avoid arrow keys at all costs.
+* Provide alternatives to the mouse.
+* Learn keyboard shortcuts once, use forever.
+* Time investments to automate your workflow pay off in the long run
 
+### Warnings
 * May intimidate friends and family.
-** First consult doctor specializing in RSI prevention 
 
 ## What's included?
 ### Vestigial support for bash and vim

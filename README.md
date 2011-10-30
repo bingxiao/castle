@@ -8,7 +8,7 @@ dotfiles. This is how I work.
 
 ### Guiding principles
 * Minimize keystrokes.
-* When typing, fingers belong on the home row.
+* Fingers belong on the home row.
 * Avoid arrow keys at all costs.
 * Provide alternatives to the mouse.
 * Learn keyboard shortcuts once, use forever.
@@ -50,8 +50,8 @@ recently.
 ### Pentadactyl
 I browse with Firefox and
 [Pentadactyl](http://dactyl.sourceforge.net/pentadactyl/), a vim-like
-environment in Firefox. Pentadactyl does far more than other addons
-that add hardcoded vim bindings. Try it.
+environment in Firefox. Other addons add hardcoded vim bindings to Firefox. Pentadactyl
+gives you vim.
 
 My .pentadactylrc mostly mirrors my favorite shortcuts from
 Vimperator. I am still ignorant of Pentadactyl features; advice and
@@ -61,7 +61,7 @@ tips are most welcome.
 Install with [Homesick](https://github.com/technicalpickles/homesick).
 
 If you intend to use my castle, fork it. I may change settings for no
-reason and without warning. Protect yourself by reviewing commits.
+reason and without warning.
 
 ## TODO
 * Documentation

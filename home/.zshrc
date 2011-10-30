@@ -27,12 +27,7 @@ ZSH_THEME="robbyrussell"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-#
-# Git requires a newer version, which is hard to install atm with the
-# kernel.org incident...
-# I can uninstall the current git with:
-# http://code.google.com/p/git-osx-installer/wiki/Uninstall 
-#plugins=(git)
+plugins=(osx brew git ruby gem rvm)
 
 source $ZSH/oh-my-zsh.sh
 

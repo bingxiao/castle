@@ -15,14 +15,18 @@ export EDITOR=vim                       # just kidding! I run cocoa emacs
 export CLICOLOR=1                       # enable colors for ls
 export LSCOLORS=ExFxCxDxBxegedabagacad  # readable colors for ls
 
-# Setup Python virtualenvs
-export WORKON_HOME=$HOME/virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=python2.7
-source /usr/local/share/python/virtualenvwrapper.sh
-
 # Aliases
 # TODO: Move to ~/.aliases
+alias ls="ls --color"
 alias emacs="emacs -nw"
 alias macemacs=/usr/local/Cellar/emacs/HEAD/Emacs.app/Contents/MacOS/Emacs
 #alias grep='grep --color=auto --exclude-dir=\.svn' # hightlight matches & exclude .svn 
 
+# Setup Python virtualenvs
+export WORKON_HOME=$HOME/virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=python2.7
+VIRTUALENWRAPPER_SCRIPT="/usr/local/share/python/virtualenvwrapper.sh"
+[[ -s $VIRTUALENWRAPPER_SCRIPT ]] && . $VIRTUALENWRAPPER_SCRIPT
+
+# Setup RVM
+[[ -s "/Users/natan/.rvm/scripts/rvm" ]] && . "/Users/natan/.rvm/scripts/rvm"  

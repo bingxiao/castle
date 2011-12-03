@@ -98,6 +98,8 @@ nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 " Toggle relativenumber and list [invsible whitepsace]
 nnoremap <leader>r :set relativenumber!<cr>
 nnoremap <leader>i :set list!<cr>
+" Save file
+nnoremap <leader>w :w<CR>
 " Split screens
 " New vsplit
 nnoremap <leader>v <C-w>v<C-w>l

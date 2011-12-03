@@ -11,6 +11,7 @@
 ;; * evil-numbers (see http://emacswiki.org/emacs/Evil)
 ;; * evil-leader (see https://github.com/cofi/evil-leader)
 
+
 ;; Evil settings
 (require 'evil)
 (evil-mode 1)
@@ -64,6 +65,10 @@
   (define-key evil-normal-state-map key def)
   (define-key evil-visual-state-map key def))
 
+;; always move up/down visual lines, not real lines
+(ny-evil-nvmap "j" 'evil-next-visual-line)
+(ny-evil-nvmap "k" 'evil-previous-visual-line)
+
 ;; TODO: Use http://www.emacswiki.org/emacs/IncrementalOccur 
 (defun take-me-to-your-leader ()
   "Search for a leader shortcut defined in vim.el"
@@ -85,6 +90,7 @@
 (define-key evil-normal-state-map ",el" 'take-me-to-your-leader)	; evil leaders		
 (define-key evil-normal-state-map ",f" 'ido-find-file)			; open file
 (define-key evil-normal-state-map ",F" 'ido-find-file-other-window)	
+;;(define-key evil-normal-state-map ",,f" (lambda () (ny-new-hsplit) (ido-find-file)))
 (define-key evil-normal-state-map ",b" 'ido-switch-buffer) 		; switch buffers
 (define-key evil-normal-state-map ",B" 'ido-switch-buffer-other-window) 
 (define-key evil-normal-state-map ",k" 'kill-buffer)			; kill buffers
@@ -98,13 +104,42 @@
 ;; * The bindings should match my chosen back/forward bindings in Pendactyl
 ;; * Does back/forward make sense in other modes too?
 
-;; TODO: add bindings for org mode
-;; see http://zuttobenkyou.wordpress.com/2011/02/15/some-thoughts-on-emacs-and-vim/
 (define-key evil-normal-state-map ",P" (lambda () ; paste on a newline
 					 (interactive)
 					 (evil-open-below 1)
 					 (evil-paste-after 1)
 					 (evil-normal-state)))
+
+;; make evil work for org-mode!
+;; TODO: add bindings for org mode
+;; see http://zuttobenkyou.wordpress.com/2011/02/15/some-thoughts-on-emacs-and-vim/
+;; these need fixing!
+;;(define-key evil-normal-state-map "O" (lambda ()
+;;					(interactive)
+;;					(end-of-line)
+;;					(org-insert-heading)
+;;					(evil-append nil)
+;;					))
+;;
+;;(defun always-insert-item ()
+;;  (interactive)
+;;  (if (not (org-in-item-p))
+;;    (insert "\n- ")
+;;    (org-insert-item)))
+;;
+;;(define-key evil-normal-state-map "O" (lambda ()
+;;					(interactive)
+;;					(end-of-line)
+;;					(org-insert-heading)
+;;					(evil-append nil)
+;;					))
+;;
+;;(define-key evil-normal-state-map "o" (lambda ()
+;;					(interactive)
+;;					(end-of-line)
+;;					(always-insert-item)
+;;					(evil-append nil)
+;;					))
 
 ;; splits
 (define-key evil-normal-state-map ",v" 'ny-new-vsplit)
@@ -170,7 +205,7 @@
 (define-key evil-normal-state-map ",Tam" 'color-theme-almost-monokai)
 (define-key evil-normal-state-map ",Tir" 'color-theme-ir-black)
 
-;; Ack
+;; Ack search
 (define-key evil-normal-state-map ",A" 'ack) ;; this runs ack in the same directory as current file
 
 ;; El-get

@@ -6,6 +6,7 @@
 # Setup PATH
 # TODO: Avoid duplicating paths whenever ~/.profile is sourced
 # TODO: Update to Python 2.7.2
+export PATH="/usr/texbin:${PATH}"           	               # texlive
 export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"           # brew path
 export PATH="/usr/local/Cellar/ruby/1.9.2-p290/bin:${PATH}"    # Ruby 1.9 (brew version)
 export PATH="/usr/local/share/python:${PATH}"                  # Python 2.7 binaries (see brew info python)
@@ -17,7 +18,9 @@ export LSCOLORS=ExFxCxDxBxegedabagacad  # readable colors for ls
 
 # Aliases
 # TODO: Move to ~/.aliases
+alias pg="ping google.com" # connection test
 alias ls="ls --color"
+alias htop="sudo htop"  # htop needs to run as root on OS X
 alias emacs="emacs -nw"
 alias macemacs=/usr/local/Cellar/emacs/HEAD/Emacs.app/Contents/MacOS/Emacs
 #alias grep='grep --color=auto --exclude-dir=\.svn' # hightlight matches & exclude .svn 

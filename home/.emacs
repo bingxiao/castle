@@ -1,4 +1,8 @@
 ;; TODO:
+;; - Replace myself with my Emacs and leave for Hawaii.
+;;   Need to give Emacs unfettered access to irc, email, github repos, and blog.
+;;   Should probably let Emacs train on some old datasets of personal info & conversations
+;;
 ;; - CEldoc mode
 ;; - Use Emacs starter kit, dev kit, or emacs-kicker
 ;; - Make emacs more project oriented (e.g. auto-load TAGS when I open a new file in diff project)

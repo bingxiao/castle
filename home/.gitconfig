@@ -11,6 +11,7 @@
 	; (if you are using an inferior text-editor, set to `true` to checkout CR+LF)
 	autocrlf = input
 	editor = vim
+	excludesfile = /Users/natan/.gitignore_global
 [alias]
 	; aliases wont work if git can't access a directory in your path
 	; log plus

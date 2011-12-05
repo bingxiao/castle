@@ -1,18 +1,39 @@
 ;;; Coding settings
 
-;; Indentation
-;; Enable automatic indention in CC-mode and lisp-mode for new lines
+;; Automatic indentation
+;; Also see tabs/spaces settings below
+(define-key global-map (kbd "RET") 'newline-and-indent) ;; doesn't work for ruby, might work for others
 (add-hook 'c-mode-common-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
 (add-hook 'lisp-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
 (add-hook 'emacs-lisp-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
+(add-hook 'html-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
+(add-hook 'ruby-mode-hook '(lambda () (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)))
+(add-hook 'asm-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline)))
 
-;; Use TAB for smart indentation, not a single, literal, tab
-(global-set-key (kbd "TAB") 'self-insert-command)
+;; HAML mode (added acc to http://www.emacswiki.org/emacs/HamlMode)
+(add-hook 'haml-mode-hook
+  '(lambda ()
+     (setq indent-tabs-mode nil)
+     (define-key haml-mode-map "\C-m" 'newline-and-indent)))
 
-;; Use tabs, not spaces, for indentation globally
-;; TODO: Change this?
-(setq indent-tabs-mode t)
-(setq-default indent-tabs-mode t)
+(add-hook 'css-mode-hook '(lambda () (css-color-mode 1)))
+
+;; File associations
+(add-to-list 'auto-mode-alist '("\.rake$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\.gemspec$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\.ru$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
+
+;; Flymake
+;; this is ugly, but not as bad as the default
+(set-face-background 'flymake-errline "red4")
+(set-face-background 'flymake-warnline "dark slate blue")
+
+;; Use nxhtml-mode for html files
+;; I use mumamo instead
+;;(add-to-list 'auto-mode-alist '("\.html$" . nxhtml-mode))
 
 ;; Indentation styles for C-like languages
 (setq c-default-style
@@ -21,12 +42,14 @@
 ;; Lisp indentation
 (setq lisp-indent-offset 2)
 
-;; ;; setup indentation widths for CC-mode
-;; (defun nhy-change-c-indentation (indent)
-;;   (interactive "r")
-;;   (setq default-tab-width indent)
-;;   (setq tab-width indent)
-;;   (setq c-basic-indent indent))
+;; Use TAB for smart indentation, not a single, literal, tab
+(global-set-key (kbd "TAB") 'self-insert-command)
+
+;; Use tabs, not spaces, for indentation globally
+;; TODO: Change this?
+(setq indent-tabs-mode t)
+(setq-default indent-tabs-mode t)
+(setq ruby-indent-level 4)
 
 (mapcar (lambda (hooksym)
 	  (add-hook hooksym

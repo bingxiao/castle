@@ -14,36 +14,60 @@
 ;; - Learn kill rings (M-y to cycle?)
 ;; - More customizations from starter kit and http://www.kieranhealy.org/esk/starter-kit-bindings.html
 ;; - Keep related buffers together with elscreen http://emacs-fu.blogspot.com/2009/07/keeping-related-buffers-together-with.html
+;; - pavpanchekha's literate .emacs: https://github.com/pavpanchekha/dotfiles/blob/master/.emacs.d/emacs.org
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t)
- '(send-mail-function (quote smtpmail-send-it))
- '(smtpmail-smtp-server "smtp.gmail.com")
- '(smtpmail-smtp-service "smtp"))
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+  '(inhibit-startup-screen t)
+  '(org-link-search-must-match-exact-headline nil)
+  '(org-return-follows-link t)
+  '(send-mail-function (quote smtpmail-send-it))
+  '(smtpmail-smtp-server "smtp.gmail.com" t)
+  '(smtpmail-smtp-service "smtp" t))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(highlight-80+ ((nil (:background "grey" :foreground "black"))))
- '(hl-line ((t (:underline "white"))))
- '(isearch ((t (:foreground "#b58900" :background "black"))))
- '(lazy-highlight ((t (:foreground "black" :background "#999999"))))
- '(nxml-where-marking ((default nil) (nil nil)))
- '(org-level-1 ((t (:inherit default :foreground "dodger blue"))))
- '(org-tag ((t (:foreground "light green" :weight bold))))
- '(org-tag-face ((t (:inherit org-tag :foreground "green")))))
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+  '(highlight-80+ ((nil (:background "grey" :foreground "black"))))
+  '(hl-line ((t (:underline "white"))))
+  '(isearch ((t (:foreground "#b58900" :background "black"))))
+  '(lazy-highlight ((t (:foreground "black" :background "#999999"))))
+  '(mumamo-background-chunk-major ((t nil)))
+  '(mumamo-background-chunk-submode1 ((t nil)))
+  '(mumamo-background-chunk-submode2 ((t nil)))
+  '(mumamo-background-chunk-submode3 ((t nil)))
+  '(mumamo-background-chunk-submode4 ((t nil)))
+  '(nxml-where-marking ((default nil) (nil nil)))
+  '(org-level-1 ((t (:inherit default :foreground "dodger blue"))))
+  '(org-tag ((t (:foreground "light green" :weight bold))))
+  '(org-tag-face ((t (:inherit org-tag :foreground "green")))))
 
 ;; setup load paths
 (add-to-list 'load-path "~/.emacs.d/custom")
 (add-to-list 'load-path "~/.emacs.d/custom/packages")
 
-;; add executables to emacs' path
-(push "/usr/texbin" exec-path)
+;; Add executables to emacs' path
+(when (eq window-system 'ns)
+  ;; Add executables to Emacs' PATH so that it can find them
+  (push "/usr/texbin" exec-path)
+  (setenv "PATH" (concat (getenv "PATH") ":/usr/texbin"))
+
+  ;; Sometimes Emacs executes commands indirectly via a shell
+  ;; Mac OS X normally executes shells (bash, zsh) as login shells. For zsh,
+  ;; this means .zshrc isn't loaded and zsh wont be able to find commands
+  ;; that aren't in the default OS X $PATH. 
+  ;; Adding -i ensures that we get an interactive shell and .zshrc is loaded
+  (let ((switches shell-command-switch))
+    (require 'cl)
+    (unless (search "i" switches)
+      (setq shell-command-switch (concat switches "i"))))
+  ;; TODO: fix the RVM recipe or set this manually
+  ;;(setq ruby-compilation-executable "TODO")
+  )
 
 ;; TODO: setup smtp for sending through gmail
 ;; This is broken
@@ -90,16 +114,22 @@
      ;; and: https://code.google.com/p/my-emace-file/source/browse/dictionary.el
      ;; TODO: add midnight.el and ido-ubiquitous (test with rename-file-and-buffer)
      autopair auto-pair+ browse-kill-ring deft diction dictionary
-     full-ack markerpen magit markdown-mode minimap pretty-mode
-     scratch smex sunrise-commander synonyms thingatpt+ typing
-     emacs-w3m
+     full-ack markerpen magit minimap nxhtml scratch smex
+     sunrise-commander synonyms thingatpt+ typing emacs-w3m
 
+     ;; ruby
+     ;; rinari must be before flymake-ruby
+     rinari flymake-ruby ;html5
+
+     ;; More text modes
+     markdown-mode haml-mode coffee-mode yaml-mode 
+     
      ;; useless, but fun
      ;; see also: http://www.emacswiki.org/emacs/PrettySymbol
      pretty-mode
      
      ;; larger packages - fear these
-     cedet ;;org-mode
+     cedet org-mode
      
      ;; vim emulation
      evil evil-leader evil-surround evil-numbers undo-tree
@@ -117,6 +147,7 @@
 (require 'personal/editing)		;; general editing settings
 (require 'personal/checkpoint)		;; checkpoint specific settings
 (require 'personal/desktop)		;; save sessions, recent files, and better backups
+(require 'personal/recycling)		;; recycle old bytes and buffers
 (require 'personal/show-unique-buffer-names)
 (require 'personal/ny-functions)
 (require 'personal/lisp)

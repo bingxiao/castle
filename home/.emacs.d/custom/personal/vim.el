@@ -21,6 +21,23 @@
 ;; require commands we want to bind
 (require 'personal/ny-functions)
 
+;; Umm... Umm... Er... a mode for editing .vimrc files
+;; Really, this is only for .pentadactylrc!
+;; From http://stackoverflow.com/a/4238738/495995
+(define-generic-mode 'vimrc-generic-mode
+    '()
+    '()
+    '(("^[\t ]*:?\\(!\\|ab\\|map\\|unmap\\)[^\r\n\"]*\"[^\r\n\"]*\\(\"[^\r\n\"]*\"[^\r\n\"]*\\)*$"
+       (0 font-lock-warning-face))
+      ("\\(^\\|[\t ]\\)\\(\".*\\)$"
+      (2 font-lock-comment-face))
+      ("\"\\([^\n\r\"\\]\\|\\.\\)*\""
+       (0 font-lock-string-face)))
+    '("/vimrc\\'" "\\.vim\\(rc\\)?\\'" "\\pentadactylrc\\'")
+    '((lambda ()
+        (modify-syntax-entry ?\" ".")))
+    "Generic mode for Vim configuration files.")
+
 ;; Make "jk" behave as ESC key
 ;; I used to use a snippet from http://zuttobenkyou.wordpress.com/2011/02/15/some-thoughts-on-emacs-and-vim/
 ;; This works better (from https://github.com/cofi/dotfiles/blob/masfill-paracs.d/cofi-evil.el)

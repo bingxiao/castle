@@ -6,3 +6,5 @@ custom/packages
 ede-projects.el
 elpa
 el-get
+tramp
+url

@@ -11,7 +11,12 @@ map -modes=n,v J <count><count><count>gT
 map -modes=n,v K <count><count><count>gt
 map -modes=n,v x <count>D
 
-" Site-specific settings
+" Site-specific navigation shortcuts
+" Open first Google result
+:autocmd LocationChange google.com map g1 :js openUILinkIn($("#ires ol li a")[0], "current")<CR>
+" Go from a Hacker News comments page to the original article
+:autocmd LocationChange news.ycombinator.com map g1 :js openUILinkIn($(".title a")[0], "current")<CR>
+
 " Don't swallow gmail's shortcuts
 set passkeys=mail.google.com:xD	
 
